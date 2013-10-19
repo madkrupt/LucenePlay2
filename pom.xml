@@ -76,7 +76,6 @@
                     <target>1.7</target>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
-                    <executable>/usr/bin/javac</executable>
                     <fork>true</fork>
                 </configuration>
             </plugin>
