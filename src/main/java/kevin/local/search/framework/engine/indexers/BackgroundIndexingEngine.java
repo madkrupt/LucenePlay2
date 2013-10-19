@@ -1,10 +1,9 @@
 package kevin.local.search.framework.engine.indexers;
 
+import javafx.util.Pair;
 import kevin.local.search.framework.SearcherBootstrap;
-import local.kevin.data.data.Pair;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.*;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
@@ -85,17 +84,17 @@ public class BackgroundIndexingEngine<T> implements Runnable, AutoCloseable {
                         //Timeout was hit
                         continue;
                     }
-                    else if (nextAction.getRight().getAction() == IndexingEventResponse.Action.DO_NOTHING) {
+                    else if (nextAction.getValue().getAction() == IndexingEventResponse.Action.DO_NOTHING) {
                         continue;
                     }
-                    else if (nextAction.getRight().getAction() == IndexingEventResponse.Action.DELETE_DOC) {
-                        Map<String, String> compositeId = bootstrap.pullId(nextAction.getLeft());
+                    else if (nextAction.getValue().getAction() == IndexingEventResponse.Action.DELETE_DOC) {
+                        Map<String, String> compositeId = bootstrap.pullId(nextAction.getKey());
                         Query q = Indexers.makeIdQuery(compositeId);
                         indexWriter.deleteDocuments(q);
 
                     }
-                    else if (nextAction.getRight().getAction() == IndexingEventResponse.Action.CONTRIBUTE) {
-                        Indexers.contribute(bootstrap, indexSearcher, indexWriter, bootstrap.pullId(nextAction.getLeft()), nextAction.getRight().getFields(), false, false, analyzer);
+                    else if (nextAction.getValue().getAction() == IndexingEventResponse.Action.CONTRIBUTE) {
+                        Indexers.contribute(bootstrap, indexSearcher, indexWriter, bootstrap.pullId(nextAction.getKey()), nextAction.getValue().getFields(), false, false, analyzer);
                     }
 
                 }

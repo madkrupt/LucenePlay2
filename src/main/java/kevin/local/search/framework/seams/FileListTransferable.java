@@ -1,6 +1,7 @@
 package kevin.local.search.framework.seams;
 
-import local.kevin.data.data.ListWrapper;
+
+import kevin.local.search.framework.ListWrapper;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;

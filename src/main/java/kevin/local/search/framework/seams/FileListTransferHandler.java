@@ -1,6 +1,6 @@
 package kevin.local.search.framework.seams;
 
-import local.kevin.data.data.ListWrapper;
+import kevin.local.search.framework.ListWrapper;
 import kevin.local.search.framework.engine.indexers.BackgroundIndexingEngine;
 import org.apache.lucene.document.Document;
 import org.slf4j.LoggerFactory;

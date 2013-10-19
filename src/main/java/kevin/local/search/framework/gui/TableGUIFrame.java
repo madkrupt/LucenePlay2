@@ -1,13 +1,11 @@
 package kevin.local.search.framework.gui;
 
+import javafx.util.Pair;
+import kevin.local.search.framework.ListWrapper;
 import kevin.local.search.framework.SearcherBootstrap;
 import kevin.local.search.framework.engine.indexers.BackgroundIndexingEngine;
-import kevin.local.search.framework.seams.FileListBackIndexDropTarget;
-import kevin.local.search.framework.seams.FileListTransferHandler;
 import kevin.local.search.framework.seams.FileListTransferable;
 import kevin.local.search.framework.seams.ResultsTableModel;
-import local.kevin.data.data.ListWrapper;
-import local.kevin.data.data.Pair;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexableField;
@@ -56,14 +54,14 @@ public class TableGUIFrame<T> {
             final Pair<TableColumnModel, JPopupMenu> modelMenuPair = makeColumnModel(colData);
             final ResultsTableModel rtm = new ResultsTableModel(searcher, colData);
 
-            final SearchableJTableAdapter resultTable = new SearchableJTableAdapter(rtm, modelMenuPair.getLeft());
+            final SearchableJTableAdapter resultTable = new SearchableJTableAdapter(rtm, modelMenuPair.getKey());
 
             // add the listener to the jtable
             //MouseListener popupListener = new PopupListener();
             // add the listener specifically to the header
             //table.addMouseListener(popupListener);
 
-            resultTable.getTableHeader().addMouseListener(ContextMenuMouseAdapter.makeMouseAdapter(null, modelMenuPair.getRight()));
+            resultTable.getTableHeader().addMouseListener(ContextMenuMouseAdapter.makeMouseAdapter(null, modelMenuPair.getValue()));
             resultTable.addMouseListener(ContextMenuMouseAdapter.makeMouseAdapter(resultTable, makeContextMenu(rtm, resultTable)));
 
             //For Drag Drop
