@@ -9,6 +9,16 @@
     <version>0.3-SNAPSHOT</version>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>javafx</artifactId>
+            <version>2.2</version>
+            <systemPath>${java.home}/lib/jfxrt.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+
+
         <dependency>
             <groupId>org.apache.lucene</groupId>
             	<artifactId>lucene-core</artifactId>
@@ -76,6 +86,8 @@
                     <target>1.7</target>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
+                    <fork>true</fork>
+                    <!--<executable>/opt/jdk/jdk1.7.0/bin/javac</executable>-->
                     <fork>true</fork>
                 </configuration>
             </plugin>
